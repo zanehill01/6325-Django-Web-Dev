@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Notes</title>
+  </head>
+  <body>
+    <h1>My Notes</h1>
+
+    <!-- Form for creating a new note -->
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Add Note</button>
+    </form>
+
+    <hr>
+
+    <!-- Display existing notes -->
+    <ul>
+      {% for note in notes %}
+        <li><strong>{{ note.title }}</strong>: {{ note.content }}</li>
+      {% empty %}
+        <li>No notes yet.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
